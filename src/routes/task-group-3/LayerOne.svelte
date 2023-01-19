@@ -1,5 +1,7 @@
 <script>
     import LayerTwo from "./LayerTwo.svelte";
+
+    let hola = () => alert('Hola');
 </script>
 
-<LayerTwo />
+<LayerTwo on:click on:ola on:hola={hola}/>

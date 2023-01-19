@@ -45,7 +45,7 @@
         Challenge: Fix `div1` and `div2` so they use the Svelte DOM Event method instead
         Note: Drag and drop should work correctly if you do this the correct way
      -->
-    <div id="div1" ondrop="drop(event)" on:dragover="{allowDrop}">
+    <div id="div1" on:drop="{drop}" on:dragover="{allowDrop}">
         <img src="https://svelte.dev/tutorial/image.gif" alt="Rick Roll" draggable="true" on:dragstart="{drag}" id="drag1">
     </div>
       <br>
@@ -59,7 +59,7 @@
               try using a empty Inline Handler as a placeholder. 
               (Empty meaning it contains no event in the argument or executable code in the body)
      -->
-    <div id="div2" ondrop="drop(event)" on:dragover="{allowDrop}"></div>    
+    <div id="div2" on:drop="{drop}" on:dragover|preventDefault={null}></div>    
 </div>
 
 <style>

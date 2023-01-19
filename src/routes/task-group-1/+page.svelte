@@ -104,6 +104,7 @@
 
         // Hint: It's easier than you think and involves no functions or methods
  
+        characterSheet = characterSheet // maybe?
     }
 
     // This Reactive statement checks if
@@ -112,13 +113,14 @@
     $: if(characterSheet.characters[0].isPlaceholder() && characterSheet.characters.length > 1) {
             // Challenge: Remove the placeholder using the .splice() function 
             
+            characterSheet.characters.splice(0, 1)
             updateCharacterSheet()
     }
 
     // Use the single line reactive statement below
     // Challenge: console.log() the amount of characters Objects in characterSheet
     // Hint: This should match the amount of rows your table has, including the initial placeholder table
-    $: console.log("")
+    $: console.log(`characterSheet objects: ${characterSheet.characters.length}`)
     
     $: {
         // Here we grab the array index of the newest character in the sheet
@@ -130,13 +132,20 @@
 
         // Hint: You should use the built-in isPlaceholder() method in your if statement
 
+        if(!characterSheet.characters[newestCharacter].isPlaceholder()) {
+           console.log(`Character name: ${characterSheet.characters[newestCharacter].name}`) 
+           console.log(`Character class}: ${characterSheet.characters[newestCharacter].class}`) 
+           console.log(`Character level: ${characterSheet.characters[newestCharacter].level}`) 
+        }
+
     }
 
     function addCharacterHandler(event) {
         // Challenge: Grab the need values below using the event variable
-        let characterName = ""
-        let characterClass = ""
-        let characterLevel = 99
+        
+        let characterName = event.target[0].value
+        let characterClass = event.target[1].value
+        let characterLevel = parseInt(event.target[2].value)
 
         characterSheet.addCharacter(new Character(characterName, characterClass, characterLevel))
         
@@ -146,6 +155,19 @@
         document.getElementById("main-form").reset()
     }
 
+    // my characters
+    characterSheet.addCharacter(new Character("Kunitake", "Musa", 61))
+    characterSheet.addCharacter(new Character("Leenathla", "Shai", 61))
+    characterSheet.addCharacter(new Character("Sygril", "Guardian", 63))
+    characterSheet.addCharacter(new Character("Sviginleif", "Valkyrie", 61))
+    characterSheet.addCharacter(new Character("Nevaun", "Mystic", 61))
+    characterSheet.addCharacter(new Character("Lyrgis", "Drakania", 61))
+    characterSheet.addCharacter(new Character("Zhelya", "Dark Knight", 60))
+    characterSheet.addCharacter(new Character("Harumihi", "Maehwa", 60))
+    characterSheet.addCharacter(new Character("Ynele", "Witch", 60))
+    characterSheet.addCharacter(new Character("Leaedan", "Archer", 56))
+    characterSheet.addCharacter(new Character("Niureh", "Lahn", 61))
+    characterSheet.addCharacter(new Character("Wolfstare", "Striker", 61))
 </script>
 
 <div class="m-6">
